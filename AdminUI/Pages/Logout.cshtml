@@ -1,0 +1,17 @@
+﻿@page
+@model Jakub_Zajega_14987.AdminUI.Pages.LogoutModel
+@{
+    ViewData["Title"] = "Wyloguj";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p class="lead">Czy na pewno chcesz się wylogować z panelu?</p>
+    <hr />
+    <div class="mt-4">
+        <form class="form-inline" method="post">
+            <button type="submit" class="btn btn-danger btn-lg me-3">Tak, wyloguj mnie</button>
+            <a class="btn btn-secondary btn-lg" asp-page="/Index">Anuluj</a>
+        </form>
+    </div>
+</div>

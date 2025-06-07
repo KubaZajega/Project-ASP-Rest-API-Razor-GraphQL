@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista Postów z API</h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Data Utworzenia</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Posts.Any())
+        {
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>@post.Id</td>
+                    <td>@post.Title</td>
+                    <td>@post.CreatedAt.ToLocalTime()</td>
+                    <td>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <a class="btn btn-sm btn-primary" asp-page="/EditPost" asp-route-id="@post.Id">Edytuj</a>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@post.Id" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć ten post?');">
+                                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                                </form>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">Brak postów do wyświetlenia.</td>
+            </tr>
+        }
+    </tbody>
+</table>

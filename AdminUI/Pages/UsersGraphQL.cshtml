@@ -1,0 +1,28 @@
+﻿@page
+@model UsersGraphQLModel
+@{
+    ViewData["Title"] = "Użytkownicy z GraphQL";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Ta lista użytkowników została pobrana z osobnej usługi GraphQL.</p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nazwa użytkownika</th>
+            <th>Rola</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Username</td>
+                <td><span class="badge bg-secondary">@user.Role</span></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿@page "{id:int}"
+@model EditPostModel
+@{
+    ViewData["Title"] = "Edytuj Post";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h4>Edytujesz post o ID: @Model.Id</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="PostToUpdate.Title" class="form-label"></label>
+                <input asp-for="PostToUpdate.Title" class="form-control" />
+                <span asp-validation-for="PostToUpdate.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PostToUpdate.Content" class="form-label"></label>
+                <textarea asp-for="PostToUpdate.Content" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="PostToUpdate.Content" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+            <a asp-page="/Index" class="btn btn-secondary">Anuluj</a>
+        </form>
+    </div>
+</div>
